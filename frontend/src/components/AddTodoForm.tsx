@@ -10,7 +10,7 @@ const [description, setDescription] = useState<string>("");
 function handleAddTodo(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     console.log("addSuccess");
-    onAddTodo(description);
+    onAddTodo(description.trim());
     setDescription("");
 
 
@@ -20,10 +20,10 @@ function handleAddTodo(e: FormEvent<HTMLFormElement>) {
             <form onSubmit={(e) => {
                 handleAddTodo(e)
             }}>
-                <input onChange={(e)=> {
+                <input value={description} onChange={(e)=> {
                     setDescription(e.target.value)
                 }}/>
-                <button type={"submit"}>Add</button>
+                <button disabled={!description.trim()} type={"submit"}>Add</button>
             </form>
         </>
     )
